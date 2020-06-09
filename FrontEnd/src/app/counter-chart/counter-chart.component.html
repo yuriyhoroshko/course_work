@@ -1,0 +1,142 @@
+<div class='row main-container' *ngIf='!isLoading && !isLoaded'>
+    <div class='col-4'>
+    </div>
+   
+    <div class='col-4 btn'>
+        <mat-tab-group>
+                <mat-tab label='SSA'>
+                    <mat-card>
+                        <mat-card-title>SSA</mat-card-title>
+                        <div>
+                            <div class='row form'>
+                                <div class='col-6'>
+                                    <mat-form-field>
+                                        <input matInput (change)='updateBeginDate($event.target.value)' type="datetime-local" placeholder="Begin Date">
+                                    </mat-form-field>
+                                </div>
+                                <div class='col-6'>
+                                    <mat-form-field>
+                                        <input matInput (change)='updateEndDate($event.target.value)' type="datetime-local" placeholder="End Date">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Confidence</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.confidence=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Training window size</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.trainingWindowSize=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Seasonality window size</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.seasonalityWindowSize=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>P value history length</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.pValueHistoryLength=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form btn'>
+                            <button mat-button (click)='getData(true)'>Get Data</button>
+                        </div>
+                    </mat-card>
+                </mat-tab>
+            <mat-tab label='SRCNN'>
+               <mat-card>
+                        <mat-card-title>SRCNN</mat-card-title>
+                        <div>
+                            <div class='row form'>
+                                <div class='col-6'>
+                                    <mat-form-field>
+                                        <input matInput (change)='updateBeginDate($event.target.value)' type="datetime-local" placeholder="Begin Date">
+                                    </mat-form-field>
+                                </div>
+                                <div class='col-6'>
+                                    <mat-form-field>
+                                        <input matInput (change)='updateEndDate($event.target.value)' type="datetime-local" placeholder="End Date">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>    
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Window size</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.windowSize=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Threshold</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.threshold=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form'>
+                            <div class='col-6'>
+                                <b>Judgement window size</b>
+                            </div>
+                            <div class='col-6'>
+                                <mat-form-field>
+                                    <input matInput (change)='algorithmOptions.judgementWindowSize=$event.target.value' type="number" placeholder="0">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class='row form btn'>
+                            <button mat-button (click)='getData(false)'>Get Data</button>
+                        </div>
+                    </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+   
+    <div class='col-4'>
+    </div>
+</div>
+<mat-spinner *ngIf='isLoading' class='center'></mat-spinner>
+
+<div *ngIf='isLoaded'>
+    <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [grid]="chartOptions.grid"
+        [stroke]="chartOptions.stroke"
+        [title]="chartOptions.title"
+        [labels]="chartOptions.labels"
+        [annotations]="chartOptions.annotations"
+  ></apx-chart>
+</div>

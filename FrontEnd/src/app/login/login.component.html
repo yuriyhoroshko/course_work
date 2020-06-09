@@ -1,0 +1,24 @@
+<div class='main-container'>
+    <div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your login</mat-label>
+                <input (keyup)="loginChanged($event)" matInput type="text">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input (keyup)="passwordChanged($event)" matInput type="password">
+            </mat-form-field>
+        </div>
+        <div>
+        <button mat-button (click)="tryAuth(false)">
+            Login
+        </button>
+        <button mat-button (click)="tryAuth(true)">
+            Register
+        </button>
+        </div>
+    </div>
+</div>

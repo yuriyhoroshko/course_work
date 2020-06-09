@@ -1,0 +1,86 @@
+<div class='row'>
+    <div class='col-2'>
+    </div>
+
+    <div class='col-8'>
+        <div class='center'>
+            <b>Here is list of your servers:</b>
+        </div>
+        <mat-list>
+            <div *ngFor='let server of servers; let i = index' style='margin-bottom:20px'>
+                <div class='center server-container'>
+                    <div class='row'>
+                        <div class='col-3'>
+                        PC name: {{server.serverName}}
+                        </div>
+
+                        <div class='col-3'>
+                        Hostname: {{server.ipAddress}}
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <mat-expansion-panel class='expander'>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                Show counters
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                                <mat-list>
+                                    <div class='row'>
+                                        <div class='col-4'>
+                                            <div class='center'>
+                                                <b>Name</b>
+                                            </div>
+                                        </div>
+                                        <div class='col-3'>
+                                            <div class='center'>
+                                                <b>Last value</b>
+                                            </div>
+                                        </div>
+                                        <div class='col-3'>
+                                            <div class='center'>
+                                                <b>Last update</b>
+                                            </div>
+                                        </div>
+                                        <div class='col-2'>
+                                            <div class='center'>
+                                                <b>View</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div *ngFor='let counter of server.counters; let ind = index'>
+                                    <div class='row'>
+                                        <div class='col-4'>
+                                            <div class='center'>
+                                                <span>{{counter.name}}</span>
+                                            </div>
+                                        </div>
+                                        <div class='col-3'>
+                                            <div class='center'>
+                                                <span>{{counter.value}}</span>
+                                            </div>
+                                        </div>
+                                        <div class='col-3'>
+                                            <div class='center'>
+                                                <span>{{counter.time}}</span>
+                                            </div>
+                                        </div>
+                                        <div class='col-2'>
+                                            <div class='center'>
+                                                <button mat-button (click)='viewData(counter.name, server.serverId)'>View</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-list>
+                        </mat-expansion-panel>
+                    </div>
+                </div>
+            </div>
+        </mat-list>
+    </div>
+
+    <div class='col-2'>
+    </div>
+
+</div>
